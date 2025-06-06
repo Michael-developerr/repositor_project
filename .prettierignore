@@ -1,0 +1,5 @@
+# Ignore artifacts:\nbuild\ncoverage\n
+node_modules
+* html
+* css
+* .scss
