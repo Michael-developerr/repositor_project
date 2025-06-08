@@ -4,11 +4,9 @@ import { lazy, Suspense } from 'react';
 import { PATH } from '../../shared/config/path';
 import Loading from '../../page/Loading';
 import Error404 from '../../page/Error404';
-import MainPage from '../../page/MainPage';
+import MainPage from '../../page/mainPage/MainPage';
 
-const Layout = lazy(
-    () => import('../../app/layout/Layout'),
-);
+const Layout = lazy(() => import('../layout/Layout'));
 
 const Router = () => {
     return createBrowserRouter([

@@ -1,3 +1,8 @@
 .container {
-    padding-top: 20px;
+    padding: 15px 0;
+    margin-bottom: 30px;
+}
+
+.wrapper {
+    padding: 0 40px;
 }
