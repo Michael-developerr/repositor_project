@@ -1,0 +1,27 @@
+.wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    max-width: 500px;
+    width: 100%;
+    padding: 8px 44px;
+    border-radius: 6px;
+    outline: none;
+}
+
+.wrapper::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-image: url('../../../shared/icons/header/search.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+    left: 16px;
+    top: 10px;
+}

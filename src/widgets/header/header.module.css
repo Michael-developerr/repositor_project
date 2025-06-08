@@ -1,0 +1,13 @@
+.header {
+    padding: 15px 40px;
+    margin-bottom: 30px;
+    
+}
+
+.header__block {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: rgba(0, 100, 235, 1);
+    padding: 16px 40px;
+}

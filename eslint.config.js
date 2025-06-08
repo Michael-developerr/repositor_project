@@ -66,6 +66,7 @@ export default tseslint.config(
             ],
             'max-lines': ['warn', { max: 124 }],
             'max-params': ['error', 3],
+            'prettier/prettier': ['error', { endOfLine: 'lf' }],
         },
     },
 );

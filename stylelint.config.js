@@ -6,5 +6,6 @@ export default {
         'alpha-value-notation': 'number',
         'value-keyword-case': null,
         'color-hex-length': 'long',
+        'selector-class-pattern': null,
     },
 };
