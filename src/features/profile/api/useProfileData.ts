@@ -14,7 +14,11 @@ const useProfileData = () => {
         data: reposData,
         isLoading: isReposLoading,
         error: reposError,
-    } = useGetUserReposQuery(userData?.login || '');
+    } = useGetUserReposQuery({
+        username: userData?.login || '',
+        page: 1,
+        per_page: 4,
+    });
 
     return {
         user: {
