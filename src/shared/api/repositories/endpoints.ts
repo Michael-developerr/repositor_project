@@ -23,8 +23,16 @@ export const endpoints = createApi({
         getCurrentUser: builder.query<GitHubUser, void>({
             query: () => '/user',
         }),
-        getUserRepos: builder.query<GitHubRepo[], string>({
-            query: (username) => `/users/${username}/repos`,
+        getUserRepos: builder.query<
+            GitHubRepo[],
+            {
+                username: string;
+                page: number;
+                per_page: number;
+            }
+        >({
+            query: ({ username, page, per_page }) =>
+                `/users/${username}/repos?page=${page}&per_page=${per_page}`,
         }),
     }),
 });

@@ -3,10 +3,22 @@ import useProfileData from '../../features/profile/api/useProfileData';
 import Loading from '../../page/Loading';
 import Text from '../../shared/ui/text/Text';
 import styles from './ProfileRepositoria.module.css';
+import usePaginatedRepos from '../../features/profile/api/usePaginatedRepos';
 
 const ProfileRepositoria = () => {
-    const { repos } = useProfileData();
-    const { reposData, isReposLoading, reposError } = repos;
+    const { user } = useProfileData();
+    const {
+        reposData,
+        isLoading,
+        error,
+        page,
+        nextPage,
+        prevPage,
+        goToPage,
+        hasNextPage,
+        hasPrevPage,
+        visiblePages,
+    } = usePaginatedRepos(user.userData?.login || '');
 
     return (
         <div className={styles.reposSection}>
@@ -15,44 +27,99 @@ const ProfileRepositoria = () => {
                 weight="bold"
                 size="XL"
             >
-                Репозитории({reposData?.length})
+                Репозитории {reposData?.length}
             </Text>
 
-            {isReposLoading ? (
+            {isLoading ? (
                 <Loading />
-            ) : reposError ? (
+            ) : error ? (
                 <Text tag="p">
                     Ошибка загрузки репозиториев
                 </Text>
             ) : (
-                <ul className={styles.reposList}>
-                    {reposData?.map((repo) => (
-                        <li
-                            key={repo.id}
-                            className={styles.repoItem}
-                        >
-                            <Link
-                                to={repo.html_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.repoLink}
+                <>
+                    <ul className={styles.reposList}>
+                        {reposData?.map((repo) => (
+                            <li
+                                key={repo.id}
+                                className={styles.repoItem}
                             >
-                                <Text
-                                    className={styles.text}
-                                    tag="h3"
-                                    weight="semiBold"
-                                    size="l"
+                                <Link
+                                    to={repo.html_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={
+                                        styles.repoLink
+                                    }
                                 >
-                                    {repo.name}
+                                    <Text
+                                        className={
+                                            styles.text
+                                        }
+                                        tag="h3"
+                                        weight="semiBold"
+                                        size="l"
+                                    >
+                                        {repo.name}
+                                    </Text>
+                                </Link>
+                                <Text tag="p">
+                                    {repo.description}
                                 </Text>
-                            </Link>
-                            <Text tag="p">
-                                {' '}
-                                {repo.description}
-                            </Text>
-                        </li>
-                    ))}
-                </ul>
+                            </li>
+                        ))}
+                    </ul>
+
+                    <div className={styles.pagination}>
+                        <button
+                            onClick={prevPage}
+                            disabled={!hasPrevPage}
+                            className={
+                                styles.paginationButton
+                            }
+                        >
+                            &lt;
+                        </button>
+
+                        {visiblePages.map(
+                            (pageNum, index) =>
+                                pageNum === '...' ? (
+                                    <span
+                                        key={`dots-${index}`}
+                                        className={
+                                            styles.dots
+                                        }
+                                    >
+                                        ...
+                                    </span>
+                                ) : (
+                                    <button
+                                        key={pageNum}
+                                        onClick={() =>
+                                            goToPage(
+                                                Number(
+                                                    pageNum,
+                                                ),
+                                            )
+                                        }
+                                        className={`${styles.pageButton} ${page === pageNum ? styles.active : ''}`}
+                                    >
+                                        {pageNum}
+                                    </button>
+                                ),
+                        )}
+
+                        <button
+                            onClick={nextPage}
+                            disabled={!hasNextPage}
+                            className={
+                                styles.paginationButton
+                            }
+                        >
+                            &gt;
+                        </button>
+                    </div>
+                </>
             )}
         </div>
     );
