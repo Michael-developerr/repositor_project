@@ -2,7 +2,7 @@ import {
     createApi,
     fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
-import { GitHubUser } from './typeApi';
+import { GitHubRepo, GitHubUser } from './typeApi';
 
 export const endpoints = createApi({
     reducerPath: 'githubApi',
@@ -23,7 +23,13 @@ export const endpoints = createApi({
         getCurrentUser: builder.query<GitHubUser, void>({
             query: () => '/user',
         }),
+        getUserRepos: builder.query<GitHubRepo[], string>({
+            query: (username) => `/users/${username}/repos`,
+        }),
     }),
 });
 
-export const { useGetCurrentUserQuery } = endpoints;
+export const {
+    useGetCurrentUserQuery,
+    useGetUserReposQuery,
+} = endpoints;

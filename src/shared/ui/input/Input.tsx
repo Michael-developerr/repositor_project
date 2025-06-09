@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { InputProps } from './inputType';
 import styles from './inputType.module.css';
-// import search from '../../../shared/icons/header/search.svg';
+
 const Input: FC<InputProps> = (props) => {
     const {
         type = 'text',
