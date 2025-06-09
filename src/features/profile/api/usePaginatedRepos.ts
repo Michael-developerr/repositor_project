@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import { useGetUserReposQuery } from '../../../shared/api/repositories/endpoints';
+import {
+    useGetUserInfoQuery,
+    useGetUserReposQuery,
+} from '../../../shared/api/repositories/endpoints';
 
 const usePaginatedRepos = (username: string) => {
     const [page, setPage] = useState(1); // Начинаем с 1, так как GitHub API использует 1-based pagination
     const perPage = 4; // Объявляем до использования
+    const { data: userInfo } =
+        useGetUserInfoQuery(username);
 
-    const totalPages = 10;
     const {
         data: reposData,
         isLoading,
@@ -15,6 +19,9 @@ const usePaginatedRepos = (username: string) => {
         page,
         per_page: perPage, // Используем объявленную переменную
     });
+
+    const totalRepos = userInfo?.public_repos || 0;
+    const totalPages = Math.ceil(totalRepos / perPage);
 
     const getVisiblePages = () => {
         const visiblePages = [];
@@ -55,6 +62,7 @@ const usePaginatedRepos = (username: string) => {
 
     return {
         reposData,
+        totalRepos,
         isLoading,
         error,
         page,

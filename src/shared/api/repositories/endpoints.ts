@@ -23,6 +23,12 @@ export const endpoints = createApi({
         getCurrentUser: builder.query<GitHubUser, void>({
             query: () => '/user',
         }),
+        getUserInfo: builder.query<
+            { public_repos: number },
+            string
+        >({
+            query: (username) => `/users/${username}`,
+        }),
         getUserRepos: builder.query<
             GitHubRepo[],
             {
@@ -39,5 +45,6 @@ export const endpoints = createApi({
 
 export const {
     useGetCurrentUserQuery,
+    useGetUserInfoQuery,
     useGetUserReposQuery,
 } = endpoints;

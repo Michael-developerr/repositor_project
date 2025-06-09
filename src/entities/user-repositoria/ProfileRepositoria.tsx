@@ -8,6 +8,7 @@ import usePaginatedRepos from '../../features/profile/api/usePaginatedRepos';
 const ProfileRepositoria = () => {
     const { user } = useProfileData();
     const {
+        totalRepos,
         reposData,
         isLoading,
         error,
@@ -21,13 +22,14 @@ const ProfileRepositoria = () => {
     } = usePaginatedRepos(user.userData?.login || '');
 
     return (
-        <div className={styles.reposSection}>
+        <>
             <Text
                 tag="h2"
                 weight="bold"
                 size="XL"
+                className={styles.title}
             >
-                Репозитории {reposData?.length}
+                Repositories ({totalRepos})
             </Text>
 
             {isLoading ? (
@@ -54,7 +56,7 @@ const ProfileRepositoria = () => {
                                 >
                                     <Text
                                         className={
-                                            styles.text
+                                            styles.reposList__text
                                         }
                                         tag="h3"
                                         weight="semiBold"
@@ -78,7 +80,7 @@ const ProfileRepositoria = () => {
                                 styles.paginationButton
                             }
                         >
-                            &lt;
+                            {'<'}
                         </button>
 
                         {visiblePages.map(
@@ -116,12 +118,12 @@ const ProfileRepositoria = () => {
                                 styles.paginationButton
                             }
                         >
-                            &gt;
+                            {'>'}
                         </button>
                     </div>
                 </>
             )}
-        </div>
+        </>
     );
 };
 

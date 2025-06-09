@@ -1,6 +1,6 @@
-import Input from '../../shared/ui/input/Input';
 import style from './header.module.css';
 import Logo from '../../shared/icons//header/logo.svg';
+import SearchOnInput from '../../features/searchOnInput/SearchOnInput';
 
 const Header = () => {
     return (
@@ -12,7 +12,7 @@ const Header = () => {
                     height="40"
                     alt="логитип"
                 />
-                <Input placeholder="Enter GitHub username" />
+                <SearchOnInput />
             </div>
         </div>
     );
