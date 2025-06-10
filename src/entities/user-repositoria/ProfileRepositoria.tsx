@@ -1,12 +1,18 @@
 import { Link } from 'react-router-dom';
-import useProfileData from '../../features/profile/api/useProfileData';
+
 import Loading from '../../page/Loading';
 import Text from '../../shared/ui/text/Text';
 import styles from './ProfileRepositoria.module.css';
 import usePaginatedRepos from '../../features/profile/api/usePaginatedRepos';
+import { GitHubUser } from '../../shared/api/repositories/typeApi';
 
-const ProfileRepositoria = () => {
-    const { user } = useProfileData();
+interface ProfileRepositoriaProps {
+    user?: GitHubUser;
+}
+
+const ProfileRepositoria = ({
+    user,
+}: ProfileRepositoriaProps) => {
     const {
         totalRepos,
         reposData,
@@ -19,7 +25,7 @@ const ProfileRepositoria = () => {
         hasNextPage,
         hasPrevPage,
         visiblePages,
-    } = usePaginatedRepos(user.userData?.login || '');
+    } = usePaginatedRepos(user?.login || '');
 
     return (
         <>

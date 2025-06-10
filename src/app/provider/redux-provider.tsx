@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { endpoints } from '../../shared/api/repositories/endpoints';
+import valueReducer from '../../features/searchOnInput/model/searchSlice';
 
 export const store = configureStore({
     reducer: {
+        valueSearch: valueReducer,
         [endpoints.reducerPath]: endpoints.reducer,
     },
 

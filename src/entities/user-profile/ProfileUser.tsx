@@ -1,23 +1,33 @@
 import Error404 from '../../page/Error404';
 import Loading from '../../page/Loading';
-import useProfileData from '../../features/profile/api/useProfileData';
+
 import Text from '../../shared/ui/text/Text';
 import { Link } from 'react-router-dom';
 import styles from './ProfileUjser.module.css';
+import { GitHubUser } from '../../shared/api/repositories/typeApi';
 
-const ProfileUjser = () => {
-    const { user } = useProfileData();
-    const { userData, isUserLoading, userError } = user;
+interface ProfileUserProps {
+    user?: GitHubUser;
+    isLoading: boolean;
+    error: unknown;
+}
 
-    if (isUserLoading) return <Loading />;
-    if (userError) return <Error404 />;
+const ProfileUser = ({
+    user,
+    isLoading,
+    error,
+}: ProfileUserProps) => {
+    if (isLoading) return <Loading />;
+    if (error) return <Error404 />;
+    if (!user) return null;
 
+    console.log(user);
     return (
         <>
-            {userData && (
+            {user && (
                 <div className={styles.userBlock}>
                     <img
-                        src={userData.avatar_url}
+                        src={user.avatar_url}
                         alt="Avatar"
                         className={styles.img}
                     />
@@ -26,14 +36,14 @@ const ProfileUjser = () => {
                         weight="semiBold"
                         size="l"
                     >
-                        {userData.login}
+                        {user.login}
                     </Text>
                     <Link
-                        to={userData.html_url}
+                        to={user.html_url}
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Профиль на GitHub
+                        {user.login}
                     </Link>
                     <div className={styles.block__follow}>
                         <Text
@@ -42,7 +52,7 @@ const ProfileUjser = () => {
                                 styles.block__follow__followers
                             }
                         >
-                            {userData.followers} followers
+                            {user.followers} followers
                         </Text>
                         <Text
                             tag="p"
@@ -50,7 +60,7 @@ const ProfileUjser = () => {
                                 styles.block__follow__following
                             }
                         >
-                            {userData.following} following
+                            {user.following} following
                         </Text>
                     </div>
                 </div>
@@ -59,4 +69,4 @@ const ProfileUjser = () => {
     );
 };
 
-export default ProfileUjser;
+export default ProfileUser;

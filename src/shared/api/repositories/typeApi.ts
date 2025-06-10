@@ -28,3 +28,9 @@ export interface GitHubRepo {
     language: string | null;
     updated_at: string;
 }
+
+export interface GitHubSearchResponse {
+    total_count: number;
+    incomplete_results: boolean;
+    items: GitHubUser[];
+}

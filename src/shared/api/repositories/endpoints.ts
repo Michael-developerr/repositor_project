@@ -2,7 +2,11 @@ import {
     createApi,
     fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
-import { GitHubRepo, GitHubUser } from './typeApi';
+import {
+    GitHubRepo,
+    GitHubSearchResponse,
+    GitHubUser,
+} from './typeApi';
 
 export const endpoints = createApi({
     reducerPath: 'githubApi',
@@ -40,6 +44,13 @@ export const endpoints = createApi({
             query: ({ username, page, per_page }) =>
                 `/users/${username}/repos?page=${page}&per_page=${per_page}`,
         }),
+        searchUsers: builder.query<
+            GitHubSearchResponse,
+            string
+        >({
+            query: (searchTerm) =>
+                `/search/users?q=${encodeURIComponent(searchTerm)}`,
+        }),
     }),
 });
 
@@ -47,4 +58,5 @@ export const {
     useGetCurrentUserQuery,
     useGetUserInfoQuery,
     useGetUserReposQuery,
+    useSearchUsersQuery,
 } = endpoints;
