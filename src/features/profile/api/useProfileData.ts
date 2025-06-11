@@ -9,7 +9,7 @@ const useProfileData = () => {
         isLoading: isUserLoading,
         error: userError,
     } = useGetCurrentUserQuery();
-
+  
     const {
         data: reposData,
         isLoading: isReposLoading,
