@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-
-import Loading from '../../page/Loading';
 import Text from '../../shared/ui/text/Text';
 import styles from './ProfileRepositoria.module.css';
 import usePaginatedRepos from '../../features/profile/api/usePaginatedRepos';
 import { GitHubUser } from '../../shared/api/repositories/typeApi';
-
+import notFound from '../../shared/icons/main/notFound.svg';
+import notRepo from '../../shared/icons/main/notRepo.svg';
+import Loading from '../../page/loading/Loading';
 interface ProfileRepositoriaProps {
     user?: GitHubUser;
 }
@@ -27,8 +27,21 @@ const ProfileRepositoria = ({
         visiblePages,
     } = usePaginatedRepos(user?.login || '');
 
+    if (isLoading) return <Loading />;
+
+    if (error)
+        return (
+            <div className={styles.error}>
+                <img
+                    src={notFound}
+                    alt="User not found"
+                />
+                <p>User not found</p>
+            </div>
+        );
+
     return (
-        <>
+        <div>
             <Text
                 tag="h2"
                 weight="bold"
@@ -38,13 +51,7 @@ const ProfileRepositoria = ({
                 Repositories ({totalRepos})
             </Text>
 
-            {isLoading ? (
-                <Loading />
-            ) : error ? (
-                <Text tag="p">
-                    Ошибка загрузки репозиториев
-                </Text>
-            ) : (
+            {reposData && reposData.length > 0 ? (
                 <>
                     <ul className={styles.reposList}>
                         {reposData?.map((repo) => (
@@ -128,8 +135,22 @@ const ProfileRepositoria = ({
                         </button>
                     </div>
                 </>
+            ) : (
+                <div className={styles.notRepo}>
+                    <img
+                        src={notRepo}
+                        alt="Нет репозиториев"
+                    />
+
+                    <Text
+                        tag="p"
+                        size="s"
+                    >
+                        Repository list is empty
+                    </Text>
+                </div>
             )}
-        </>
+        </div>
     );
 };
 

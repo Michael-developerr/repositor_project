@@ -1,5 +1,5 @@
 import Error404 from '../../page/Error404';
-import Loading from '../../page/Loading';
+import Loading from '../../page/loading/Loading';
 
 import Text from '../../shared/ui/text/Text';
 import { Link } from 'react-router-dom';
@@ -21,7 +21,6 @@ const ProfileUser = ({
     if (error) return <Error404 />;
     if (!user) return null;
 
-    console.log(user);
     return (
         <>
             {user && (

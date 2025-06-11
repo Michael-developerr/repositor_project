@@ -8,7 +8,7 @@ const GeneralMain = () => {
     const { userData, isUserLoading, userError } = user;
 
     return (
-        <ul className={style.list}>
+        <ul className={style.listGeneral}>
             <li>
                 <ProfileUser
                     user={userData}

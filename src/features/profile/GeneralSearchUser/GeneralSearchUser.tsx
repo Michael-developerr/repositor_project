@@ -1,13 +1,28 @@
 import style from './GeneralSearchUser.module.css';
-
 import useSearchData from '../api/useSearchData';
-// import UserSearchProfile from '../../../page/UserSearchProfile/UserSearchProfile';
 import ProfileUser from '../../../entities/user-profile/ProfileUser';
 import ProfileRepositoria from '../../../entities/user-repositoria/ProfileRepositoria';
+import searchUserlogo from '../../../shared/icons/main/searchUser.svg';
+import { useSelector } from 'react-redux';
+import { hasSearchedSel } from './module/GeneralSearchUserSelector';
 
 const GeneralSearchUser = () => {
     const { searchUser } = useSearchData();
     const { data, isLoading, error } = searchUser;
+
+    const hasSearched = useSelector(hasSearchedSel);
+
+    if (!hasSearched) {
+        return (
+            <div className={style.nowSearch}>
+                <img
+                    src={searchUserlogo}
+                    alt="Search user"
+                />
+                <p>Start with searching a GitHub user</p>
+            </div>
+        );
+    }
 
     return (
         <ul className={style.list}>
@@ -19,12 +34,6 @@ const GeneralSearchUser = () => {
                     error={error}
                 />
             </li>
-            {/* <UserSearchProfile
-                    data={data}
-                    loading={isLoading}
-                    error={error}
-                /> */}
-
             <li>
                 <ProfileRepositoria user={data} />
             </li>
