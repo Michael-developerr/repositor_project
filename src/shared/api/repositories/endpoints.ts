@@ -14,6 +14,7 @@ export const endpoints = createApi({
         baseUrl: 'https://api.github.com',
         prepareHeaders: (headers) => {
             const token = import.meta.env.VITE_GITHUB_TOKEN;
+
             if (token) {
                 headers.set(
                     'Authorization',

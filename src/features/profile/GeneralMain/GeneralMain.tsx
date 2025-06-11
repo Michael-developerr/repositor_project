@@ -7,6 +7,9 @@ const GeneralMain = () => {
     const { user } = useProfileData();
     const { userData, isUserLoading, userError } = user;
 
+    if (userError) {
+        <p>Start with searching a GitHub user</p>;
+    }
     return (
         <ul className={style.listGeneral}>
             <li>

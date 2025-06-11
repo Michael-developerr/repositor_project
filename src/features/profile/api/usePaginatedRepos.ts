@@ -7,9 +7,8 @@ import {
 const usePaginatedRepos = (username: string) => {
     const [page, setPage] = useState(1);
     const perPage = 4;
-    const { data: userInfo } = useGetUserInfoQuery(
-        'MuradIbragimov',
-    );
+    const { data: userInfo } =
+        useGetUserInfoQuery(username);
 
     const {
         data: reposData,
