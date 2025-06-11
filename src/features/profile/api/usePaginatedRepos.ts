@@ -5,8 +5,8 @@ import {
 } from '../../../shared/api/repositories/endpoints';
 
 const usePaginatedRepos = (username: string) => {
-    const [page, setPage] = useState(1); // Начинаем с 1, так как GitHub API использует 1-based pagination
-    const perPage = 4; // Объявляем до использования
+    const [page, setPage] = useState(1);
+    const perPage = 4;
     const { data: userInfo } =
         useGetUserInfoQuery(username);
 
@@ -17,7 +17,7 @@ const usePaginatedRepos = (username: string) => {
     } = useGetUserReposQuery({
         username,
         page,
-        per_page: perPage, // Используем объявленную переменную
+        per_page: perPage,
     });
 
     const totalRepos = userInfo?.public_repos || 0;
@@ -26,7 +26,7 @@ const usePaginatedRepos = (username: string) => {
     const getVisiblePages = () => {
         const visiblePages = [];
         visiblePages.push(1);
-        // Показываем текущую страницу и соседние
+
         for (
             let i = Math.max(2, page - 1);
             i <= Math.min(totalPages - 1, page + 1);
@@ -37,12 +37,10 @@ const usePaginatedRepos = (username: string) => {
             }
         }
 
-        // Всегда показываем последнюю страницу
         if (!visiblePages.includes(totalPages)) {
             visiblePages.push(totalPages);
         }
 
-        // Добавляем разрывы (точки) где нужно
         const pagesWithBreaks = [];
         for (let i = 0; i < visiblePages.length; i++) {
             pagesWithBreaks.push(visiblePages[i]);

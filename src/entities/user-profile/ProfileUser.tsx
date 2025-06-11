@@ -1,6 +1,5 @@
 import Error404 from '../../page/Error404';
 import Loading from '../../page/loading/Loading';
-
 import Text from '../../shared/ui/text/Text';
 import { Link } from 'react-router-dom';
 import styles from './ProfileUjser.module.css';
