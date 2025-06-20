@@ -1,6 +1,13 @@
 .list {
-    display: flex;
+    /* display: flex;
     justify-content: space-around;
+     */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+    min-height: 600px; /* резервация пространства */
+    padding: 20px;
 }
 
 .error {

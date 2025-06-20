@@ -7,7 +7,6 @@
     "bracketSameLine": false,
     "arrowParens": "always",
     "singleAttributePerLine": true,
-    "endOfLine":"lf",
+    "endOfLine": "lf",
     "printWidth": 60
-  
 }

@@ -38,7 +38,10 @@ export default tseslint.config(
                 ...globals.es2020,
             },
             parserOptions: {
-                project: ['tsconfig.json', 'tsconfig.node.json'],
+                project: [
+                    'tsconfig.json',
+                    'tsconfig.node.json',
+                ],
             },
         },
     },
@@ -66,7 +69,10 @@ export default tseslint.config(
             ],
             'max-lines': ['warn', { max: 124 }],
             'max-params': ['error', 3],
-            'prettier/prettier': ['error', { endOfLine: 'lf' }],
+            'prettier/prettier': [
+                'error',
+                { endOfLine: 'lf' },
+            ],
         },
     },
 );

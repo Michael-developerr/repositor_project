@@ -31,16 +31,15 @@
     height: 24px;
 }
 
-
 .block__follow__following {
-   position: relative;
+    position: relative;
     display: flex;
     align-items: center;
     column-gap: 10px;
 }
 
 .block__follow__following::before {
-      content: '';
+    content: '';
     background-image: url('../../shared/icons/main/follwing.svg');
     background-repeat: no-repeat;
     background-size: contain;
