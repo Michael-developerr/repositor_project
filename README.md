@@ -44,4 +44,4 @@ npm run prettier
 
 # Подготовка Husky-хуков (автоматически вызывается при установке)
 npm run prepare
->>>>>>> a9a214b10c888d2bf931eedd03ea21fe856b0884
+
