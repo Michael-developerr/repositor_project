@@ -1,16 +1,27 @@
-# React + TypeScript + Vite
+# 🚀 Проект на React + Vite с FSD архитектурой
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Этот проект создан с использованием современного стека технологий, включая **Vite**, **React**, **TypeScript**, а также архитектурный подход **Feature-Sliced Design (FSD)**. Дополнительно настроены инструменты качества кода: ESLint, Prettier, Stylelint и Husky для автоматизации проверок при коммитах.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📦 Технологии
 
-## Expanding the ESLint configuration
+- ⚡ **[Vite](https://vitejs.dev/)** — супербыстрый сборщик
+- ⚛️ **[React](https://react.dev/)** — библиотека для создания интерфейсов
+- 🧩 **[TypeScript](https://www.typescriptlang.org/)** — типизация JavaScript
+- 🗂 **[Feature-Sliced Design](https://feature-sliced.design/)** — методология структурирования фронтенд-архитектуры
+- 🎨 **CSS Modules** — локальные стили
+- 🧹 **ESLint + Prettier + Stylelint** — линтинг и форматирование
+- 🐶 **Husky + lint-staged + commitlint** — pre-commit и commit-msg хуки
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+⚙️ Скрипты
+bash
+Копировать
+Редактировать
+# Запуск проекта в dev-режиме
+npm run dev
 
+<<<<<<< HEAD
 ```js
 export default tseslint.config({
     extends: [
@@ -33,9 +44,15 @@ export default tseslint.config({
     },
 });
 ```
+=======
+# Сборка проекта (включает проверку типов)
+npm run build
+>>>>>>> a9a214b10c888d2bf931eedd03ea21fe856b0884
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# Предпросмотр production-сборки
+npm run preview
 
+<<<<<<< HEAD
 ```js
 // eslint.config.js
 import reactX from 'eslint-plugin-react-x';
@@ -55,3 +72,19 @@ export default tseslint.config({
     },
 });
 ```
+=======
+# Линтинг JS/TS-файлов
+npm run lint
+
+# Линтинг CSS-файлов
+npm run lint:css
+
+# Линтинг и автоматическое исправление CSS
+npm run lint:css:fix
+
+# Форматирование кода через Prettier
+npm run prettier
+
+# Подготовка Husky-хуков (автоматически вызывается при установке)
+npm run prepare
+>>>>>>> a9a214b10c888d2bf931eedd03ea21fe856b0884
